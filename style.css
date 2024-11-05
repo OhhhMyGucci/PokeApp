@@ -13,26 +13,31 @@ body {
 
 #arena {
     position: relative;
-    height: 50%;
-    background-image: url("img/fondo.png");
-    background-repeat: no-repeat;
-    background-size: contain;
+    height: 100%;
+    width: 100%;
 }
 
 #img-propio {
     position: absolute;
-    top: 160px;
-    left: 160px;
-    width: 250px;
-    height: 250px;
+    top: 0px;
+    left: 0px;
+    height: 55%;
+    aspect-ratio: 1;
 }
 
 #img-rival {
     position: absolute;
-    top: 40px;
-    left: 480px;
-    width: 250px;
-    height: 250px;
+    top: 0px;
+    left: 0px;
+    height: 55%;
+    aspect-ratio: 1;
+}
+
+.arena-container {
+    position: relative;
+    margin: 0 auto;
+    height: 50%;
+    aspect-ratio: 1.7;
 }
 
 .stats {
