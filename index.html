@@ -1,49 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio JS</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-<body>
-    
-    <div class="stats" id="poke-rival">
-        <h3 id="nombreRival"></h3>
-        <p id="tipo1Rival"></p>
-        <p id="tipo2Rival"></p>
-        <p>Vida: <span id="vidaRival"></span></p>
-        <p>Ataque: <span id="ataqueFisRival"></span></p>
-        <p>Ataque Especial: <span id="ataqueEspRival"></span></p>
-        <p>Defensa Especial: <span id="defensaEspRival"></span></p>
-        <p>Defensa Fisica: <span id="defensaFisRival"></span></p>
-        <p>Velocidad: <span id="velocidadRival"></span></p>
-    </div>
- 
-    <div class="arena", id = "arena">
-        <img id="pokePropio" src="" alt="">
-        <img id="pokeRival" src="" alt="">
-    </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ejercicio JS</title>
+        <link rel="stylesheet" href="./style.css" />
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div class="stats" id="poke-rival">
+            <div class="name-container">
+                <span id="nombreRival" class="name"></span>
+                <div id="tipo1Rival" class="type"></div>
+                <div id="tipo2Rival" class="type"></div>
+            </div>
+            <p>Vida: <span id="vidaRival"></span></p>
+            <p>Ataque: <span id="ataqueFisRival"></span></p>
+            <p>Ataque Especial: <span id="ataqueEspRival"></span></p>
+            <p>Defensa Especial: <span id="defensaEspRival"></span></p>
+            <p>Defensa Fisica: <span id="defensaFisRival"></span></p>
+            <p>Velocidad: <span id="velocidadRival"></span></p>
+        </div>
 
-    <div class="stats" id="poke-propio">
-        <h3 id="nombrePropio"></h3>
-        <p id="tipo1Propio"></p>
-        <p id="tipo2Propio"></p>
-        <p>Vida: <span id="vidaPropio"></span></p>
-        <p>Ataque: <span id="ataqueFisPropio"></span></p>
-        <p>Ataque Especial: <span id="ataqueEspPropio"></span></p>
-        <p>Defensa Especial: <span id="defensaEspPropio"></span></p>
-        <p>Defensa Fisica: <span id="defensaFisPropio"></span></p>
-        <p>Velocidad: <span id="velocidadPropio"></span></p>
-    </div>
+        <div class="arena" id="arena">
+            <img id="img-propio" src="" alt="" />
+            <img id="img-rival" src="" alt="" />
+        </div>
 
-    <div>
-        <input id="UI" max="1000" type="number">
-        <button id="btn-poke">Elegir poke</button>
-        <button id="btn-atk-fis">Ataque Fisico</button>
-        <button id="btn-atk-esp">Ataque Especial</button>
-    </div>
-    <script src="./app.js"></script>
-</body>
+        <div class="stats" id="poke-propio">
+            <div class="name-container">
+                <span id="nombrePropio" class="name"></span>
+                <div id="tipo1Propio" class="type"></div>
+                <div id="tipo2Propio" class="type"></div>
+            </div>
+            <p>Vida: <span id="vidaPropio"></span></p>
+            <p>Ataque: <span id="ataqueFisPropio"></span></p>
+            <p>Ataque Especial: <span id="ataqueEspPropio"></span></p>
+            <p>Defensa Especial: <span id="defensaEspPropio"></span></p>
+            <p>Defensa Fisica: <span id="defensaFisPropio"></span></p>
+            <p>Velocidad: <span id="velocidadPropio"></span></p>
+        </div>
+
+        <div id="UI">
+            <input id="input" max="1000" type="number" />
+            <button id="btn-poke">Elegir poke</button>
+            <button id="btn-atk-fis">Ataque Fisico</button>
+            <button id="btn-atk-esp">Ataque Especial</button>
+        </div>
+        <script src="./app.js"></script>
+    </body>
 </html>
