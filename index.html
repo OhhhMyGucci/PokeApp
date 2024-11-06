@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Ejercicio JS</title>
+        <title>PokeApp</title>
         <link rel="stylesheet" href="./style.css" />
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
@@ -14,12 +14,27 @@
                 <div id="tipo1Rival" class="type"></div>
                 <div id="tipo2Rival" class="type"></div>
             </div>
-            <p>Vida: <span id="vidaRival"></span></p>
-            <p>Ataque: <span id="ataqueFisRival"></span></p>
-            <p>Ataque Especial: <span id="ataqueEspRival"></span></p>
-            <p>Defensa Especial: <span id="defensaEspRival"></span></p>
-            <p>Defensa Fisica: <span id="defensaFisRival"></span></p>
-            <p>Velocidad: <span id="velocidadRival"></span></p>
+            <div class="hp-container">
+                <div class="hp-bar"></div>
+            </div>
+            <div class="stat">Vida: <span id="vidaRival"></span></div>
+            <div class="stats-container">
+                <div class="stat">
+                    Ataque: <span id="ataqueFisRival"></span>
+                </div>
+                <div class="stat">
+                    Defensa: <span id="defensaFisRival"></span>
+                </div>
+                <div class="stat">
+                    Ataque Especial: <span id="ataqueEspRival"></span>
+                </div>
+                <div class="stat">
+                    Defensa Especial: <span id="defensaEspRival"></span>
+                </div>
+                <div class="stat">
+                    Velocidad: <span id="velocidadRival"></span>
+                </div>
+            </div>
         </div>
 
         <div class="arena-container">
@@ -39,12 +54,27 @@
                 <div id="tipo1Propio" class="type"></div>
                 <div id="tipo2Propio" class="type"></div>
             </div>
-            <p>Vida: <span id="vidaPropio"></span></p>
-            <p>Ataque: <span id="ataqueFisPropio"></span></p>
-            <p>Ataque Especial: <span id="ataqueEspPropio"></span></p>
-            <p>Defensa Especial: <span id="defensaEspPropio"></span></p>
-            <p>Defensa Fisica: <span id="defensaFisPropio"></span></p>
-            <p>Velocidad: <span id="velocidadPropio"></span></p>
+            <div class="hp-container">
+                <div class="hp-bar"></div>
+            </div>
+            <div class="stat">Vida: <span id="vidaPropio"></span></div>
+            <div class="stats-container">
+                <div class="stat">
+                    Ataque: <span id="ataqueFisPropio"></span>
+                </div>
+                <div class="stat">
+                    Defensa: <span id="defensaFisPropio"></span>
+                </div>
+                <div class="stat">
+                    Ataque Especial: <span id="ataqueEspPropio"></span>
+                </div>
+                <div class="stat">
+                    Defensa Especial: <span id="defensaEspPropio"></span>
+                </div>
+                <div class="stat">
+                    Velocidad: <span id="velocidadPropio"></span>
+                </div>
+            </div>
         </div>
 
         <div id="UI">
