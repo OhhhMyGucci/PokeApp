@@ -25,6 +25,7 @@ const velocidadPropio = document.querySelector("#velocidadPropio");
 
 //Interfaz de usuario
 
+const arena = document.querySelector("#arena");
 const input = document.querySelector("#input");
 const btnElegir = document.querySelector("#btn-poke");
 const btnAtkFis = document.querySelector("#btn-atk-fis");
@@ -91,6 +92,22 @@ const obtenerPokeRival = () => {
             velocidadRival.innerHTML = res.stats[5].base_stat;
         });
 };
+
+const position_img = function () {
+    const width = arena.offsetWidth;
+    const height = arena.offsetHeight;
+
+    imgPropio.style.top = 0.38 * height + "px";
+    imgPropio.style.left = 0.15 * width + "px";
+
+    imgRival.style.top = 0.06 * height + "px";
+    imgRival.style.left = 0.52 * width + "px";
+};
+
+position_img();
+
+window.addEventListener("resize", position_img);
+
 //Combate, el pokemon perdedor será el que se le acabe primero su vida.
 //El usuario deberá elegir si ocupa ataque fisico o especial, según lo elegido los pokemon usarán su defensa especial o defensa fisica para bloquear los ataques
 //La defensa especial o fisica del pokemon que recibe el ataque sera restada del ataque especial o fisico del pokemon atacante, la diferencia será restada a la vida del pokemon defensor
