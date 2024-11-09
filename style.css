@@ -1,4 +1,5 @@
 body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -9,36 +10,72 @@ body {
 #UI {
     height: 4%;
     width: 100%;
+    padding: 5px 16px;
 }
 
 #arena {
     position: relative;
-    height: 50%;
-    background-image: url("img/fondo.png");
-    background-repeat: no-repeat;
-    background-size: contain;
+    height: 100%;
+    width: 100%;
 }
 
 #img-propio {
     position: absolute;
-    top: 160px;
-    left: 160px;
-    width: 250px;
-    height: 250px;
+    top: 0px;
+    left: 0px;
+    height: 55%;
+    aspect-ratio: 1;
 }
 
 #img-rival {
     position: absolute;
-    top: 40px;
-    left: 480px;
-    width: 250px;
-    height: 250px;
+    top: 0px;
+    left: 0px;
+    height: 55%;
+    aspect-ratio: 1;
+}
+
+.arena-container {
+    position: relative;
+    margin: 0 auto;
+    height: 50%;
+    aspect-ratio: 1.7;
 }
 
 .stats {
-    height: 23%;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
     font-size: 14px;
+
+    height: 20%;
+    width: 20%;
+
+    padding: 10px;
+    border: 2px black solid;
+    border-radius: 6px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.hp-container {
+    background-color: #505050;
+    width: 80%;
+    height: 20px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.hp-bar {
+    background-color: #16be1e;
+    width: 100%;
+    height: 100%;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .name {
@@ -58,4 +95,9 @@ body {
     height: 25;
     display: flex;
     align-items: center;
+}
+
+#poke-propio {
+    margin-left: auto;
+    margin-right: 5px;
 }
