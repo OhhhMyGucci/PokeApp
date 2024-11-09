@@ -29,11 +29,12 @@ const input = document.querySelector("#input");
 const btnElegir = document.querySelector("#btn-poke");
 const btnAtkFis = document.querySelector("#btn-atk-fis");
 const btnAtkEsp = document.querySelector("#btn-atk-esp");
+const btnPelear = document.querySelector("#btn-pelear");
 
 //Método de número random
 const getNumRandom = () => {
-    let min = Math.ceil(0);
-    let max = Math.floor(1001);
+    let min = 0;
+    let max = 1025;
 
     return Math.floor(Math.random() * (max - min) + min);
 };
