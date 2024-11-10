@@ -6,6 +6,7 @@ const tipo2Rival = document.querySelector("#tipo2Rival");
 const atkFisRival = document.querySelector("#ataqueFisRival");
 const atkEspRival = document.querySelector("#ataqueEspRival");
 const vidaRival = document.querySelector("#vidaRival");
+let vidaTotalRival = 0;
 const defensaEspRival = document.querySelector("#defensaEspRival");
 const defensaFisRival = document.querySelector("#defensaFisRival");
 const velocidadRival = document.querySelector("#velocidadRival");
@@ -19,6 +20,7 @@ const tipo2Propio = document.querySelector("#tipo2Propio");
 const atkFisPropio = document.querySelector("#ataqueFisPropio");
 const atkEspPropio = document.querySelector("#ataqueEspPropio");
 const vidaPropio = document.querySelector("#vidaPropio");
+let vidaTotalPropio = 0;
 const defensaEspPropio = document.querySelector("#defensaEspPropio");
 const defensaFisPropio = document.querySelector("#defensaFisPropio");
 const velocidadPropio = document.querySelector("#velocidadPropio");
@@ -33,11 +35,13 @@ const btnAtkFis = document.querySelector("#btn-atk-fis");
 const btnAtkEsp = document.querySelector("#btn-atk-esp");
 const btnPelear = document.querySelector("#btn-pelear");
 const uiAtkSeleccionado = document.querySelector("#atk-seleccionado");
+const hpBarPropio = document.querySelector("#hp-bar-propio");
+const hpBarRival = document.querySelector("#hp-bar-rival");
 
 //Método de número random
 const getNumRandom = () => {
-    let min = 0;
-    let max = 1025;
+    let min = 1;
+    let max = 1026;
 
     return Math.floor(Math.random() * (max - min) + min);
 };
@@ -61,6 +65,7 @@ const obtenerPokePropio = () => {
                     "url('img/" + res.types[1].type.name + ".png')";
             }
             vidaPropio.innerHTML = res.stats[0].base_stat;
+            vidaTotalPropio = res.stats[0].base_stat;
             atkFisPropio.innerHTML = res.stats[1].base_stat;
             defensaFisPropio.innerHTML = res.stats[2].base_stat;
             atkEspPropio.innerHTML = res.stats[3].base_stat;
@@ -88,6 +93,7 @@ const obtenerPokeRival = () => {
                     "url('img/" + res.types[1].type.name + ".png')";
             }
             vidaRival.innerHTML = res.stats[0].base_stat;
+            vidaTotalRival = res.stats[0].base_stat;
             atkFisRival.innerHTML = res.stats[1].base_stat;
             defensaFisRival.innerHTML = res.stats[2].base_stat;
             atkEspRival.innerHTML = res.stats[3].base_stat;
@@ -125,7 +131,48 @@ window.addEventListener("resize", position_img);
 //poke2VidaRestante = poke2Vida - DañoRecibido;
 //Se turnarán los pokemon hasta que haya un ganador
 //Mostrar el ganador
-const combate = () => {};
+const combate = () => {
+    let danoPropio = atkActual
+        ? atkEspPropio.textContent
+        : atkFisPropio.textContent;
+    let atkRival = Math.floor(Math.random() * 2);
+
+    let danoRival = atkRival
+        ? atkEspRival.textContent
+        : atkFisRival.textContent;
+
+    let defPropia = atkRival
+        ? defensaEspPropio.textContent
+        : defensaFisPropio.textContent;
+
+    let defRival = atkActual
+        ? defensaEspRival.textContent
+        : defensaFisRival.textContent;
+
+    let danoInfligido = danoPropio - defRival;
+    danoInfligido = Math.max(danoInfligido, 1);
+    let danoRecibido = danoRival - defPropia;
+    danoRecibido = Math.max(danoRecibido, 1);
+
+    setVidaRival(danoInfligido);
+    setVidaPropio(danoRecibido);
+};
+
+const setVidaRival = (dano) => {
+    const vida = Math.max(vidaRival.textContent - dano, 0);
+    vidaRival.textContent = vida;
+
+    const porcentaje = (vida * 100) / vidaTotalRival;
+    hpBarRival.style.width = porcentaje + "%";
+};
+
+const setVidaPropio = (dano) => {
+    const vida = Math.max(vidaPropio.textContent - dano, 0);
+    vidaPropio.textContent = vida;
+
+    const porcentaje = (vida * 100) / vidaTotalPropio;
+    hpBarPropio.style.width = porcentaje + "%";
+};
 
 window.addEventListener("load", obtenerPokeRival);
 
