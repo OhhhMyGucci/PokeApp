@@ -22,6 +22,7 @@ const vidaPropio = document.querySelector("#vidaPropio");
 const defensaEspPropio = document.querySelector("#defensaEspPropio");
 const defensaFisPropio = document.querySelector("#defensaFisPropio");
 const velocidadPropio = document.querySelector("#velocidadPropio");
+let atkActual = 0;
 
 //Interfaz de usuario
 
@@ -31,6 +32,7 @@ const btnElegir = document.querySelector("#btn-poke");
 const btnAtkFis = document.querySelector("#btn-atk-fis");
 const btnAtkEsp = document.querySelector("#btn-atk-esp");
 const btnPelear = document.querySelector("#btn-pelear");
+const uiAtkSeleccionado = document.querySelector("#atk-seleccionado");
 
 //Método de número random
 const getNumRandom = () => {
@@ -105,6 +107,8 @@ const position_img = function () {
     imgRival.style.left = 0.52 * width + "px";
 };
 
+const peleaPoke = function () {};
+
 position_img();
 
 window.addEventListener("resize", position_img);
@@ -127,4 +131,14 @@ window.addEventListener("load", obtenerPokeRival);
 
 btnElegir.addEventListener("click", obtenerPokePropio);
 
-btnPelear.addEventListener();
+btnPelear.addEventListener("click", combate);
+
+btnAtkEsp.addEventListener("click", () => {
+    atkActual = 1;
+    uiAtkSeleccionado.innerHTML = "Ataque Especial";
+});
+
+btnAtkFis.addEventListener("click", () => {
+    atkActual = 0;
+    uiAtkSeleccionado.innerHTML = "Ataque Físico";
+});
