@@ -10,6 +10,7 @@ let vidaTotalRival = 0;
 const defensaEspRival = document.querySelector("#defensaEspRival");
 const defensaFisRival = document.querySelector("#defensaFisRival");
 const velocidadRival = document.querySelector("#velocidadRival");
+let tiposRival = undefined;
 
 //Atributos poke propio
 
@@ -25,6 +26,7 @@ const defensaEspPropio = document.querySelector("#defensaEspPropio");
 const defensaFisPropio = document.querySelector("#defensaFisPropio");
 const velocidadPropio = document.querySelector("#velocidadPropio");
 let atkActual = 0;
+let tiposPropio = undefined;
 
 //Interfaz de usuario
 
@@ -64,6 +66,7 @@ const obtenerPokePropio = () => {
                 tipo2Propio.style.backgroundImage =
                     "url('img/" + res.types[1].type.name + ".png')";
             }
+            tiposPropio = res.types;
             vidaPropio.innerHTML = res.stats[0].base_stat;
             vidaTotalPropio = res.stats[0].base_stat;
             atkFisPropio.innerHTML = res.stats[1].base_stat;
@@ -80,7 +83,6 @@ const obtenerPokeRival = () => {
     axios
         .get(`https://pokeapi.co/api/v2/pokemon/${numPokeRival}`)
         .then((res) => {
-            console.log(res.data);
             return res.data;
         })
         .then((res) => {
@@ -92,6 +94,7 @@ const obtenerPokeRival = () => {
                 tipo2Rival.style.backgroundImage =
                     "url('img/" + res.types[1].type.name + ".png')";
             }
+            tiposRival = res.types;
             vidaRival.innerHTML = res.stats[0].base_stat;
             vidaTotalRival = res.stats[0].base_stat;
             atkFisRival.innerHTML = res.stats[1].base_stat;
@@ -131,7 +134,7 @@ window.addEventListener("resize", position_img);
 //poke2VidaRestante = poke2Vida - DañoRecibido;
 //Se turnarán los pokemon hasta que haya un ganador
 //Mostrar el ganador
-const combate = () => {
+const combate = async () => {
     let danoPropio = atkActual
         ? atkEspPropio.textContent
         : atkFisPropio.textContent;
@@ -154,8 +157,60 @@ const combate = () => {
     let danoRecibido = danoRival - defPropia;
     danoRecibido = Math.max(danoRecibido, 1);
 
+    const multPropio =
+        (await checkTypeEffectivity(tiposPropio[0], tiposRival)) *
+        (await checkTypeEffectivity(tiposPropio[1], tiposRival));
+
+    const multRival =
+        (await checkTypeEffectivity(tiposRival[0], tiposPropio)) *
+        (await checkTypeEffectivity(tiposRival[1], tiposPropio));
+
+    danoInfligido *= multPropio;
+    danoRecibido *= multRival;
+
     setVidaRival(danoInfligido);
     setVidaPropio(danoRecibido);
+};
+
+const checkTypeEffectivity = async (typeAttack, typesDefense) => {
+    if (typeAttack == undefined) return 1;
+
+    const res = await axios.get(
+        `https://pokeapi.co/api/v2/type/${typeAttack.type.name}`,
+    );
+    const damageRelations = res.data.damage_relations;
+
+    const typeDefense1 = typesDefense[0].type.name;
+    const typeDefense2 = typesDefense[1]?.type.name;
+
+    // Check no damage
+    if (
+        damageRelations.no_damage_to.some(
+            (type) => type.name === typeDefense1 || type.name === typeDefense2,
+        )
+    ) {
+        return 0;
+    }
+
+    // Check half damage
+    if (
+        damageRelations.half_damage_to.some(
+            (type) => type.name === typeDefense1 || type.name === typeDefense2,
+        )
+    ) {
+        return 0.5;
+    }
+
+    // Check double damage
+    if (
+        damageRelations.double_damage_to.some(
+            (type) => type.name === typeDefense1 || type.name === typeDefense2,
+        )
+    ) {
+        return 2;
+    }
+
+    return 1;
 };
 
 const setVidaRival = (dano) => {
