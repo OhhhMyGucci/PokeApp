@@ -8,83 +8,92 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
     <body>
-        <div class="stats" id="poke-rival">
-            <div class="name-container">
-                <span id="nombreRival" class="name"></span>
-                <div id="tipo1Rival" class="type"></div>
-                <div id="tipo2Rival" class="type"></div>
+
+
+        
+        <div id="div-arena">
+            <div class="arena-container">
+                <img
+                    src="img/fondo.png"
+                    alt="fondo_arena"
+                    class="arena"
+                    id="arena"
+                />
+                <img id="img-propio" src="" alt="" />
+                <img id="img-rival" src="" alt="" />
             </div>
-            <div class="hp-container">
-                <div class="hp-bar"></div>
+        </div>
+        
+        <div id="UI-container">
+            <div class="container" >
+                <div class="stats" id="poke-propio">
+                    <div class="name-container">
+                        <span id="nombrePropio" class="name"></span>
+                        <div id="tipo1Propio" class="type"></div>
+                        <div id="tipo2Propio" class="type"></div>
+                    </div>
+                    <div class="hp-container">
+                        <div class="hp-bar"></div>
+                    </div>
+                    <div class="stat">Vida: <span id="vidaPropio"></span></div>
+                    <div class="stats-container">
+                        <div class="stat">
+                            Ataque: <span id="ataqueFisPropio"></span>
+                        </div>
+                        <div class="stat">
+                            Defensa: <span id="defensaFisPropio"></span>
+                        </div>
+                        <div class="stat">
+                            Ataque Esp.: <span id="ataqueEspPropio"></span>
+                        </div>
+                        <div class="stat">
+                            Defensa Esp.: <span id="defensaEspPropio"></span>
+                        </div>
+                        <div class="stat">
+                            Velocidad: <span id="velocidadPropio"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats" id="poke-rival">
+                    <div class="name-container">
+                        <span id="nombreRival" class="name"></span>
+                        <div id="tipo1Rival" class="type"></div>
+                        <div id="tipo2Rival" class="type"></div>
+                    </div>
+                    <div class="hp-container">
+                        <div class="hp-bar"></div>
+                    </div>
+                    <div class="stat">Vida: <span id="vidaRival"></span></div>
+                    <div class="stats-container">
+                        <div class="stat">
+                            Ataque: <span id="ataqueFisRival"></span>
+                        </div>
+                        <div class="stat">
+                            Defensa: <span id="defensaFisRival"></span>
+                        </div>
+                        <div class="stat">
+                            Ataque Esp.: <span id="ataqueEspRival"></span>
+                        </div>
+                        <div class="stat">
+                            Defensa Esp.: <span id="defensaEspRival"></span>
+                        </div>
+                        <div class="stat">
+                            Velocidad: <span id="velocidadRival"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat">Vida: <span id="vidaRival"></span></div>
-            <div class="stats-container">
-                <div class="stat">
-                    Ataque: <span id="ataqueFisRival"></span>
-                </div>
-                <div class="stat">
-                    Defensa: <span id="defensaFisRival"></span>
-                </div>
-                <div class="stat">
-                    Ataque Esp.: <span id="ataqueEspRival"></span>
-                </div>
-                <div class="stat">
-                    Defensa Esp.: <span id="defensaEspRival"></span>
-                </div>
-                <div class="stat">
-                    Velocidad: <span id="velocidadRival"></span>
-                </div>
+            <div id="UI">
+                <input id="input" max="1000" type="number" />
+                <button id="btn-poke">Elegir poke</button>
+                <button id="btn-atk-fis">Ataque Fisico</button>
+                <button id="btn-atk-esp">Ataque Especial</button>
+                <button id="btn-pelear">Pelear</button>
+                <span id="atk-seleccionado"></span>
             </div>
         </div>
 
-        <div class="arena-container">
-            <img
-                src="img/fondo.png"
-                alt="fondo_arena"
-                class="arena"
-                id="arena"
-            />
-            <img id="img-propio" src="" alt="" />
-            <img id="img-rival" src="" alt="" />
-        </div>
-
-        <div class="stats" id="poke-propio">
-            <div class="name-container">
-                <span id="nombrePropio" class="name"></span>
-                <div id="tipo1Propio" class="type"></div>
-                <div id="tipo2Propio" class="type"></div>
-            </div>
-            <div class="hp-container">
-                <div class="hp-bar"></div>
-            </div>
-            <div class="stat">Vida: <span id="vidaPropio"></span></div>
-            <div class="stats-container">
-                <div class="stat">
-                    Ataque: <span id="ataqueFisPropio"></span>
-                </div>
-                <div class="stat">
-                    Defensa: <span id="defensaFisPropio"></span>
-                </div>
-                <div class="stat">
-                    Ataque Esp.: <span id="ataqueEspPropio"></span>
-                </div>
-                <div class="stat">
-                    Defensa Esp.: <span id="defensaEspPropio"></span>
-                </div>
-                <div class="stat">
-                    Velocidad: <span id="velocidadPropio"></span>
-                </div>
-            </div>
-        </div>
-
-        <div id="UI">
-            <input id="input" max="1000" type="number" />
-            <button id="btn-poke">Elegir poke</button>
-            <button id="btn-atk-fis">Ataque Fisico</button>
-            <button id="btn-atk-esp">Ataque Especial</button>
-            <button id="btn-pelear">Pelear</button>
-            <span id="atk-seleccionado"></span>
-        </div>
+        
         <script src="./app.js"></script>
     </body>
 </html>
