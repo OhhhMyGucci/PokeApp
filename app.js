@@ -114,7 +114,7 @@ const obtenerPokeRival = () => {
 const position_img = function () {
     const width = arena.offsetWidth;
     const height = arena.offsetHeight;
-
+ 
     imgPropio.style.top = 0.38 * height + "px";
     imgPropio.style.left = 0.15 * width + "px";
 
