@@ -25,7 +25,7 @@ let vidaTotalPropio = 0;
 const defensaEspPropio = document.querySelector("#defensaEspPropio");
 const defensaFisPropio = document.querySelector("#defensaFisPropio");
 const velocidadPropio = document.querySelector("#velocidadPropio");
-let atkActual = 0;
+let atkActual = undefined;
 let tiposPropio = undefined;
 
 //Interfaz de usuario
@@ -114,7 +114,7 @@ const obtenerPokeRival = () => {
 const position_img = function () {
     const width = arena.offsetWidth;
     const height = arena.offsetHeight;
- 
+
     imgPropio.style.top = 0.38 * height + "px";
     imgPropio.style.left = 0.15 * width + "px";
 
@@ -141,6 +141,8 @@ window.addEventListener("resize", position_img);
 //Se turnarán los pokemon hasta que haya un ganador
 //Mostrar el ganador
 const combate = async () => {
+    if (atkActual == undefined) return
+
     let danoPropio = atkActual
         ? atkEspPropio.textContent
         : atkFisPropio.textContent;
