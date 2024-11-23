@@ -168,8 +168,15 @@ const combate = async () => {
     danoInfligido *= multPropio;
     danoRecibido *= multRival;
 
-    setVidaRival(danoInfligido);
-    setVidaPropio(danoRecibido);
+    if (velocidadRival.textContent > velocidadPropio.textContent) {
+        if (setVidaPropio(danoRecibido)) {
+            setVidaRival(danoInfligido);
+        }
+    } else {
+        if (setVidaRival(danoInfligido)) {
+            setVidaPropio(danoRecibido);
+        }
+    }
 };
 
 const checkTypeEffectivity = async (typeAttack, typesDefense) => {
@@ -188,27 +195,24 @@ const checkTypeEffectivity = async (typeAttack, typesDefense) => {
         damageRelations.no_damage_to.some(
             (type) => type.name === typeDefense1 || type.name === typeDefense2,
         )
-    ) {
+    )
         return 0;
-    }
 
     // Check half damage
     if (
         damageRelations.half_damage_to.some(
             (type) => type.name === typeDefense1 || type.name === typeDefense2,
         )
-    ) {
+    )
         return 0.5;
-    }
 
     // Check double damage
     if (
         damageRelations.double_damage_to.some(
             (type) => type.name === typeDefense1 || type.name === typeDefense2,
         )
-    ) {
+    )
         return 2;
-    }
 
     return 1;
 };
@@ -219,6 +223,12 @@ const setVidaRival = (dano) => {
 
     const porcentaje = (vida * 100) / vidaTotalRival;
     hpBarRival.style.width = porcentaje + "%";
+
+    if (vida == 0) {
+        pokeGanador(1);
+        return false;
+    }
+    return true;
 };
 
 const setVidaPropio = (dano) => {
@@ -227,7 +237,17 @@ const setVidaPropio = (dano) => {
 
     const porcentaje = (vida * 100) / vidaTotalPropio;
     hpBarPropio.style.width = porcentaje + "%";
+
+    if (vida == 0) {
+        pokeGanador(0);
+        return false;
+    }
+    return true;
 };
+
+function pokeGanador(ganador) {
+    btnPelear.removeEventListener("click", combate);
+}
 
 window.addEventListener("load", obtenerPokeRival);
 
