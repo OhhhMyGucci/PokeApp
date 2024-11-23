@@ -1,5 +1,7 @@
-#PokeApp
+# PokeApp
 
-###Integrantes:
+### Integrantes:
+
 Arias Hernández Javier
+
 Mireles Rubio Carina
