@@ -40,6 +40,12 @@ const uiAtkSeleccionado = document.querySelector("#atk-seleccionado");
 const hpBarPropio = document.querySelector("#hp-bar-propio");
 const hpBarRival = document.querySelector("#hp-bar-rival");
 
+// Al cargar la página, se reproduce la canción automáticamente
+window.onload = function() {
+    var audio = document.getElementById('audioPlayer');
+    audio.play(); // Reproduce el audio
+    audio.volume = 0.02;
+};
 //Método de número random
 const getNumRandom = () => {
     let min = 1;
@@ -245,7 +251,41 @@ const setVidaPropio = (dano) => {
     return true;
 };
 
+function sleep(t){
+    var esperarHasta = new Date().getTime() + t;
+    while(new Date().getTime() < esperarHasta) continue;
+}
 function pokeGanador(ganador) {
+    // Crear el contenedor para las opciones
+    const modal = document.createElement("div");
+    modal.id = "modal";
+    modal.innerHTML = `
+        <div id="modal-content">
+            <h2>${ganador === 1 ? "¡GANASTE! :D" : "Perdiste :C"}</h2>
+            <div id="modal-options">
+                <button id="restart-battle">Reiniciar Batalla</button>
+                <button id="new-battle">Nueva Batalla</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    // Manejo de los botones
+    document.querySelector("#restart-battle").addEventListener("click", () => {
+        document.body.removeChild(modal);
+        // Reinicia el combate con los mismos Pokémon
+        vidaRival.textContent = vidaTotalRival;
+        hpBarRival.style.width = "100%";
+        vidaPropio.textContent = vidaTotalPropio;
+        hpBarPropio.style.width = "100%";
+        btnPelear.addEventListener("click", combate);
+    });
+
+    document.querySelector("#new-battle").addEventListener("click", () => {
+        document.body.removeChild(modal);
+        location.reload(); // Cargar nueva batalla
+    });
+
     btnPelear.removeEventListener("click", combate);
 }
 
