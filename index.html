@@ -12,7 +12,7 @@
     <audio id="audioPlayer" autoplay loop>
         <source src="song.m4a" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
-    </audio>
+    </audio> 
         <div id="div-arena">
             <div class="arena-container">
                 <img
@@ -86,13 +86,16 @@
                 </div>
             </div>
             <div id="UI">
-                <input id="input" max="1000" type="number" />
-                <button id="btn-poke">Elegir poke</button>
-                <button id="btn-atk-fis">Ataque Fisico</button>
-                <button id="btn-atk-esp">Ataque Especial</button>
-                <button id="btn-pelear">Pelear</button>
+                <input id="input" max="1000" type="number" placeholder="ID del Pokémon" />
+                <div id="buttons-container">
+                    <button id="btn-poke">Elegir Pokémon</button>
+                    <button id="btn-atk-fis">Ataque Físico</button>
+                    <button id="btn-atk-esp">Ataque Especial</button>
+                    <button id="btn-pelear">Pelear</button>
+                </div>
                 <span id="atk-seleccionado"></span>
             </div>
+            
         </div>
 
         <script src="./app.js"></script>

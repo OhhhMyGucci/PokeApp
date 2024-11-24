@@ -56,8 +56,6 @@ body {
     border-radius: 8px;
 }
 
-
-
 .stats {
     display: flex;
     flex-direction: column;
@@ -160,6 +158,7 @@ body {
 #modal-options {
     margin-top: 20px;
     display: flex;
+    gap: 20px;
     justify-content: space-around;
 }
 
@@ -187,3 +186,85 @@ body {
     background-color: #e53935;
 }
 
+#UI {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: #f7d916;
+    padding: 20px;
+    border: 3px solid black;
+    max-width: 500px;
+    margin: 20px auto; 
+    position: relative;
+    top: -200px;
+}
+
+#input {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid black;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#buttons-container {
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background:#ffcc00;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 2px solid #3b4cca;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-width: 100px;
+}
+
+button:hover {
+    background:#3b4cca;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#btn-poke {
+    background: #d11a2a;
+    border-color: #d11a2a;
+}
+
+#btn-atk-fis {
+    background: #81c784;
+    border-color: #1b5e20;
+}
+
+#btn-atk-esp {
+    background: #ab47bc;
+    border-color: #4a148c;
+}
+
+#btn-pelear {
+    background:#ff7043;
+    border-color: #f4511e;
+}
+
+/* Estilo para el span */
+#atk-seleccionado {
+    display: block;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
