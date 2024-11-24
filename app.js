@@ -43,9 +43,12 @@ const hpBarRival = document.querySelector("#hp-bar-rival");
 // Al cargar la página, se reproduce la canción automáticamente
 window.onload = function() {
     var audio = document.getElementById('audioPlayer');
-    audio.play(); // Reproduce el audio
+    audio.play().catch(function(error) {
+        console.log('El audio no pudo reproducirse automáticamente: ', error);
+    });
     audio.volume = 0.02;
 };
+
 //Método de número random
 const getNumRandom = () => {
     let min = 1;
