@@ -49,6 +49,30 @@ window.onload = function() {
     audio.volume = 0.02;
 };
 
+// Crea un elemento div para mostrar el daño.
+// Agrega la clase CSS 'damage-text' al div.
+// Asigna el texto que muestra el daño (por ejemplo, "-20").
+// Añade este div al contenedor del Pokémon atacado.
+
+const addDamageEffect = (element, damage) => {
+    const damageText = document.createElement('div'); 
+    damageText.classList.add('damage-text');
+    damageText.textContent = `-${damage}`;
+    element.appendChild(damageText);
+
+    // Elimina el texto después de 1 segundo para que desaparezca visualmente.
+
+    setTimeout(() => {
+        element.removeChild(damageText);
+    }, 1000);
+};
+
+const animateAttack = (attacker, defender) => {
+    attacker.classList.add('attack-effect');
+    setTimeout(() => attacker.classList.remove('attack-effect'), 500);
+};
+
+
 //Método de número random
 const getNumRandom = () => {
     let min = 1;
@@ -68,13 +92,20 @@ const obtenerPokePropio = () => {
         })
         .then((res) => {
             imgPropio.src = res.sprites.back_default;
+            imgPropio.alt = `Imagen de ${res.name}, un Pokémon del tipo ${res.types[0].type.name}`; // Texto alternativo para el Pokémon
+            if (res.types[1] != undefined) {
+                imgPropio.alt += ` y ${res.types[1].type.name}`; // Agregar el segundo tipo si existe
+            }
+
             nombrePropio.innerHTML = res.name;
+
             tipo1Propio.style.backgroundImage =
                 "url('img/" + res.types[0].type.name + ".png')";
             if (res.types[1] != undefined) {
                 tipo2Propio.style.backgroundImage =
                     "url('img/" + res.types[1].type.name + ".png')";
             }
+
             tiposPropio = res.types;
             vidaPropio.innerHTML = res.stats[0].base_stat;
             vidaTotalPropio = res.stats[0].base_stat;
@@ -96,13 +127,20 @@ const obtenerPokeRival = () => {
         })
         .then((res) => {
             imgRival.src = res.sprites.front_default;
+            imgRival.alt = `Imagen de ${res.name}, un Pokémon del tipo ${res.types[0].type.name}`; // Texto alternativo para el Pokémon rival
+            if (res.types[1] != undefined) {
+                imgRival.alt += ` y ${res.types[1].type.name}`; // Agregar el segundo tipo si existe
+            }
+
             nombreRival.innerHTML = res.name;
+
             tipo1Rival.style.backgroundImage =
                 "url('img/" + res.types[0].type.name + ".png')";
             if (res.types[1] != undefined) {
                 tipo2Rival.style.backgroundImage =
                     "url('img/" + res.types[1].type.name + ".png')";
             }
+
             tiposRival = res.types;
             vidaRival.innerHTML = res.stats[0].base_stat;
             vidaTotalRival = res.stats[0].base_stat;
@@ -113,6 +151,7 @@ const obtenerPokeRival = () => {
             velocidadRival.innerHTML = res.stats[5].base_stat;
         });
 };
+
 
 const position_img = function () {
     const width = arena.offsetWidth;
@@ -144,7 +183,7 @@ window.addEventListener("resize", position_img);
 //Se turnarán los pokemon hasta que haya un ganador
 //Mostrar el ganador
 const combate = async () => {
-    if (atkActual == undefined) return
+    if (atkActual == undefined) return;
 
     let danoPropio = atkActual
         ? atkEspPropio.textContent
@@ -179,16 +218,35 @@ const combate = async () => {
     danoInfligido *= multPropio;
     danoRecibido *= multRival;
 
+    //En este apartado se implemto efectos visuales de ataque de daño
+    // Se añade la funcion animateAttack 
+    //Hace que el pokemon atacante "tiemble" durante el ataque
+    //se añade la funcion addDamageEffect 
+    //Muestra el daño infligido como un texto animado sobre el pokemon atacado
+    //La animaciones y los efectos visuales ocurren en el orden correspondiente 
+    //quien ataca primero y quien responde
+
     if (velocidadRival.textContent > velocidadPropio.textContent) {
+        // Rival ataca primero
+        animateAttack(imgRival, imgPropio);
+        addDamageEffect(imgPropio.parentElement, danoRecibido);
         if (setVidaPropio(danoRecibido)) {
+            animateAttack(imgPropio, imgRival);
+            addDamageEffect(imgRival.parentElement, danoInfligido);
             setVidaRival(danoInfligido);
         }
     } else {
+        // Propio ataca primero
+        animateAttack(imgPropio, imgRival);
+        addDamageEffect(imgRival.parentElement, danoInfligido);
         if (setVidaRival(danoInfligido)) {
+            animateAttack(imgRival, imgPropio);
+            addDamageEffect(imgPropio.parentElement, danoRecibido);
             setVidaPropio(danoRecibido);
         }
     }
 };
+
 
 const checkTypeEffectivity = async (typeAttack, typesDefense) => {
     if (typeAttack == undefined) return 1;
