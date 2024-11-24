@@ -300,7 +300,7 @@ daño el pokemon va a moverse ligeramente y se aprecia la animacion */
 
 .damage-text {
     position: absolute;
-    font-size: 20px;
+    font-size: 0px;
     font-weight: bold;
     color: red;
     animation: fade-out 1s forwards;
@@ -353,4 +353,3 @@ daño el pokemon va a moverse ligeramente y se aprecia la animacion */
         font-size: 12px;
     }
 }
-
