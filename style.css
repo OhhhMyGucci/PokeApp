@@ -270,7 +270,7 @@ button:active {
 }
 
 /* Animation de ataques de los pokemones, cada vez que reciba 
-daño el pokemon va a moverse ligeramente */
+daño el pokemon va a moverse ligeramente y se aprecia la animacion */
 @keyframes shake {
     0% { transform: translate(2px, 2px) rotate(0deg); }
     10% { transform: translate(-2px, -3px) rotate(-1deg); }
@@ -348,7 +348,7 @@ daño el pokemon va a moverse ligeramente */
     }
 
     button {
-        min-width: 80px; /* Botones más pequeños */
+        min-width: 80px; /* Botones más pequeños */ 
         padding: 8px 15px;
         font-size: 12px;
     }
